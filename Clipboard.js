@@ -1,7 +1,7 @@
 class ClipboardExtension {
   getInfo() {
     return {
-      id: 'cs2627883-Clipboard', // change this if you make an actual extension!
+      id: 'cs2627883-Clipboard',
       name: 'Clipboard',
       blocks: [
         {
