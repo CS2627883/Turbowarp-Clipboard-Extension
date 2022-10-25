@@ -71,7 +71,7 @@ class ClipboardExtension {
   }
 	pasteClipboard(args) {
     if (!clipboardextension_haspermission) {
-      _askpermission(clipboardextension_permissionreason);
+      ClipboardExtension._askpermission(clipboardextension_permissionreason);
     }
     if (clipboardextension_haspermission) {
       try {
@@ -89,7 +89,7 @@ class ClipboardExtension {
     }
   }
   askpermission(args) {
-	  _askpermission(String(args.REASON));
+	  ClipboardExtension._askpermission(String(args.REASON));
   }
   permissionreason(args) {
 	  return(clipboardextension_permissionreason);
