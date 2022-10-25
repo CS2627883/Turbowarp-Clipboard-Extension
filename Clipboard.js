@@ -3,6 +3,9 @@ clipboardextension_permissionreason = "no reason given"
 clipboardextension_permissionasked = false;
 
 class ClipboardExtension {
+  haspermission  = false;
+  permissionreason = "no reason given"
+  permissionasked  = false;
   getInfo() {
     return {
       id: 'cs2627883Clipboard',
@@ -61,8 +64,10 @@ class ClipboardExtension {
   }
 
   _askpermission(reason) {
-    if (!permissionasked) {
-      return(confirm("This project wants to read your clipboard: " + clipboardextension_permissionreason));
+    if (!ClipboardExtension._permissionasked) {
+      const choice = confirm("This project wants to read your clipboard: " + ClipboardExtension._permissionreason);
+      this._permissionreason = choice
+      this._permissionasked = true
     }
   }
 
@@ -70,12 +75,12 @@ class ClipboardExtension {
 	  navigator.clipboard.writeText(String(args.TEXT));
   }
 	pasteClipboard(args) {
-    if (!clipboardextension_haspermission) {
-      ClipboardExtension._askpermission(clipboardextension_permissionreason);
+    if (!ClipboardExtension._haspermission) {
+      ClipboardExtension._askpermission(ClipboardExtension._permissionreason);
     }
-    if (clipboardextension_haspermission) {
+    if (ClipboardExtension._haspermission) {
       try {
-        let clipboardcontents = String(navigator.clipboard.read());
+        const clipboardcontents = String(navigator.clipboard.read());
         if (length(clipboardcontents) > args.MAXLENGTH) {
           return("[Clipboard length too long");
         } else {
@@ -89,16 +94,16 @@ class ClipboardExtension {
     }
   }
   askpermission(args) {
-	  ClipboardExtension._askpermission(String(args.REASON));
+    ClipboardExtension._askpermission(String(args.REASON));
   }
   permissionreason(args) {
-	  return(clipboardextension_permissionreason);
+	  return(ClipboardExtension._permissionreason);
   }
   setpermissionreason(args) {
-	  clipboardextension_permissionreason = String(args.REASON);
+    this._permissionreason = args.REASON;
   }
   haspermission(args) {
-	  return(clipboardextension_haspermission);
+	  return(ClipboardExtension._haspermission);
   }
 }
 
