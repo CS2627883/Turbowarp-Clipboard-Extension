@@ -5,7 +5,7 @@ clipboardextension_permissionasked = false;
 class ClipboardExtension {
   getInfo() {
     return {
-      id: 'cs2627883-Clipboard',
+      id: 'cs2627883Clipboard',
       name: 'Clipboard',
       blocks: [
         {
