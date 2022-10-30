@@ -64,8 +64,8 @@ class ClipboardExtension {
   }
 
   _askpermission(reason) {
-    if (!ClipboardExtension._permissionasked) {
-      const choice = confirm("This project wants to read your clipboard: " + ClipboardExtension._permissionreason);
+    if (!this._permissionasked) {
+      const choice = confirm("This project wants to read your clipboard: " + this._permissionreason);
       this._permissionreason = choice
       this._permissionasked = true
     }
@@ -75,14 +75,14 @@ class ClipboardExtension {
 	  navigator.clipboard.writeText(String(args.TEXT));
   }
 	pasteClipboard(args) {
-    if (!ClipboardExtension._haspermission) {
-      ClipboardExtension._askpermission(ClipboardExtension._permissionreason);
+    if (!this_haspermission) {
+      this._askpermission(this._permissionreason);
     }
-    if (ClipboardExtension._haspermission) {
+    if (this._haspermission) {
       try {
         const clipboardcontents = String(navigator.clipboard.read());
         if (length(clipboardcontents) > args.MAXLENGTH) {
-          return("[Clipboard length too long");
+          return("[Clipboard length too long]");
         } else {
 	        return(clipboardcontents);
         }
@@ -94,16 +94,16 @@ class ClipboardExtension {
     }
   }
   askpermission(args) {
-    ClipboardExtension._askpermission(String(args.REASON));
+    this._askpermission(String(args.REASON));
   }
   permissionreason(args) {
-	  return(ClipboardExtension._permissionreason);
+	  return(this._permissionreason);
   }
   setpermissionreason(args) {
     this._permissionreason = args.REASON;
   }
   haspermission(args) {
-	  return(ClipboardExtension._haspermission);
+	  return(this._haspermission);
   }
 }
 
