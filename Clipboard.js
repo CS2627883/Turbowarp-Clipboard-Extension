@@ -83,7 +83,8 @@ class ClipboardExtension {
 }
 
 	copyClipboard(args) {
-	  if (this._getpermission(clipboardRead,true)) {
+	 //if (this._getpermission(clipboardRead,true)) {
+	if (true) {
 		if (Boolean(args.NONTEXT) == true) {
 			navigator.clipboard.write(String(args.CONTENT))
 		} else {
@@ -92,7 +93,8 @@ class ClipboardExtension {
   }
 }
 	pasteClipboard(args) {
-    if (this._getpermission(clipboardRead,true)) {
+    //if (this._getpermission(clipboardRead,true)) {
+	if (true) {
       if (Boolean(args.NONTEXT) == true) {
 			navigator.clipboard.read()
 		} else {
