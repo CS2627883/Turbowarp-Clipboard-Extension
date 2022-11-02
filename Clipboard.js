@@ -7,6 +7,7 @@ class ClipboardExtension {
       name: 'Clipboard',
       blocks: [
         {
+
           opcode: 'copyClipboard',
           blockType: Scratch.BlockType.COMMAND,
           text: 'copy [CONTENT] to clipboard | non-text content?  [NONTEXT]',
@@ -14,11 +15,14 @@ class ClipboardExtension {
 			CONTENT: {
               type: Scratch.ArgumentType.STRING,
               defaultValue: 'Hi!'
+			},
 			NONTEXT: {
               type: Scratch.ArgumentType.BOOLEAN,
               defaultValue: false
             }
-          },
+          }
+        },
+        {
           opcode: 'pasteClipboard',
           blockType: Scratch.BlockType.REPORTER,
           text: 'read clipboard (ignoring max clipboard length of: [MAXLENGTH])  | non-text content?  [NONTEXT]',
@@ -26,37 +30,41 @@ class ClipboardExtension {
             MAXLENGTH: {
               type: Scratch.ArgumentType.NUMBER,
               defaultValue: '1000'
-            }
+            },
 			NONTEXT: {
               type: Scratch.ArgumentType.BOOLEAN,
               defaultValue: false
             }
+          }
           },
+          {
           opcode: 'hasclipboardreadpermissionpermission',
           blockType: Scratch.BlockType.BOOLEAN,
           text: 'clipboard read permission',
           arguments: {
 			}
-          },
+    },
+    {
 		  opcode: 'hasclipboardwritepermissionpermission',
           blockType: Scratch.BlockType.BOOLEAN,
           text: 'clipboard write permission',
           arguments: {
 			}
-          },
+    },
+    {
           opcode: 'askclipboardreadpermission',
           blockType: Scratch.BlockType.COMMAND,
           text: 'request clipboard read permission',
           arguments: {
             }
           },
+          {
 		  opcode: 'askclipboardwritepermission',
           blockType: Scratch.BlockType.COMMAND,
           text: 'request clipboard write permission',
           arguments: {
             }
-          },
-        }
+        },
       ]
     };
   }
@@ -81,6 +89,7 @@ class ClipboardExtension {
 		} else {
 			navigator.clipboard.writeText(String(args.CONTENT))
 		}
+  }
 }
 	pasteClipboard(args) {
     if (this._getpermission(clipboardRead,true)) {
@@ -106,10 +115,10 @@ class ClipboardExtension {
     this._getpermission(clipboardWrite,true);
   }
   hasclipboardreadpermission(args) {
-	  return(this._getpermission(clipboardRead,false);
+	  return(this._getpermission(clipboardRead,false));
   }
   hasclipboardwritepermission(args) {
-	  return(this._getpermission(clipboardWrite,false);
+	  return(this._getpermission(clipboardWrite,false));
   }
 }
 
